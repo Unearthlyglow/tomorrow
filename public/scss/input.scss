@@ -1,0 +1,85 @@
+//Variables
+$primary-color: rgb(245, 231, 32);
+//Partials
+@use "cssreset";
+@use "grid";
+
+//Mixins ---------------------------------
+//Defines multiple properties in one variable and just as importantly it allows for
+//parameters to be passed through,
+
+@mixin theme($theme: rgb(119, 198, 200)) {
+  background: theme;
+  color: blue;
+}
+
+body {
+  @include theme();
+}
+
+// Example of Extend/Inheritance---------------------------------
+/* This CSS will print because %message-shared is extended. */
+%message-shared {
+  border: 1px solid #ccc;
+  padding: 10px;
+  color: #333;
+}
+
+// This CSS won't print because %equal-heights is never extended.
+%another-thing {
+  font-size: 30px;
+}
+// This CSS won't print because %equal-heights is never extended.
+
+%equal-heights {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.message {
+  @extend %message-shared;
+}
+
+.success {
+  @extend %message-shared;
+  border-color: green;
+  @extend %another-thing;
+}
+
+.error {
+  @extend %message-shared;
+  border-color: red;
+}
+
+.warning {
+  @extend %message-shared;
+  border-color: yellow;
+}
+// Example of Extend/Inheritance---------------------------------
+
+body {
+  background-color: theme();
+}
+
+//Nesting:
+// nav {
+//   ul {
+//     margin: 0;
+//     padding: 0;
+//     list-style: none;
+//   }
+
+//   li { display: inline-block; }
+
+//   a {
+//     display: block;
+//     padding: 6px 12px;
+//     text-decoration: none;
+//   }
+// }---------------------------------
+//Media queries:
+@media (max-width: 600px) {
+  body {
+    background: red;
+  }
+}
